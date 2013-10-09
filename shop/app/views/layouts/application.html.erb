@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Store</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="store">
+
+
+<div id="user_nav">
+  <% if user_signed_in? %>
+    Welcome <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or
+    <%= link_to "Sign in", new_user_session_path %>
+  <% end %>
+</div>
+
+
+<div id="banner">
+<%= image_tag("") %>
+<%= @page_title || "Store" %>
+</div>
+<div id="colums">
+	<div id="side">	
+  <% if user_signed_in? && current_user.role == "admin" %>
+	<%= link_to 'Add New Product', new_product_path %> <br/>
+	<%= link_to 'View Existing Product', products_path %> <br/>
+  <% end %>
+	<%= link_to 'Catalog', store_path %> <br/>
+	</div>
+	<div id="main">
+	<%= yield %>
+</div>
+</body>
+</html>
