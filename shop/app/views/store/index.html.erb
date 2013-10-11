@@ -3,10 +3,11 @@
 <% end %>
 <center>
 <div id="cart">
-     <%= render @cart %>
+     <!--%= render @cart %-->
+     <%= render partial: "/carts/cart", locals: {cart: @cart} %>
 </div>
 </center>
-<marquee behavior="alternate"><h1>Catalog</h1></marquee>
+<center><h1>Catalog</h1></center>
 <% @products.each do |product| %>
 <div class="entry">
 <%= image_tag(product.image_url) %>
