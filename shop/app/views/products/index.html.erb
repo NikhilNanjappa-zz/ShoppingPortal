@@ -1,14 +1,20 @@
 <div id="product_list">
 <h1>Listing products</h1>
 
-<table>
+<div id="accordion">
 <% @products.each do |product| %>
-   <%= render partial: "product", locals: {product: product} %>
-    <% end %>
-    
-</table>
+   <!--%= render partial: "product", locals: {product: product} %-->
+   <h3><%= product.title %></h3>
+<div>
+<table><tr>
+	<td><%= image_tag(product.image_url, :class => 'list_image') %> </td>
+    <td><%= truncate(strip_tags(product.description), :length => 80) %></td>
+</tr></table>
 </div>
-
+<% end %>
+</div> 
+</div>
+<center><%= will_paginate @products %></center>
 <br/>
 
 <%= link_to 'New product', new_product_path %> 

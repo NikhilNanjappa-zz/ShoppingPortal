@@ -16,4 +16,16 @@ class Product < ActiveRecord::Base
         return false
       end
     end
+
+	def self.search(search, page)
+  		paginate :per_page => 3, :page => page,
+           :conditions => ['title like ?', "%#{search}%"],
+           :order => 'title'
+	end
+
+ def self.sear(query)
+# where(:title, query) -> This would return an exact match of the query
+	where("title like ?", "%#{query}%")
+end
+
 end
