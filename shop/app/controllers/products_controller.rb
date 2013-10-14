@@ -4,13 +4,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    #@products = Product.all
-     if params[:search]
-@products = Product.sear(params[:search]).order("created_at DESC")
-else
-@products = Product.order("created_at DESC")
-end
-    @products = Product.search(params[:search], params[:page])
+     if params[:search] #search box
+      @products = Product.sear(params[:search]).order("created_at DESC")
+     else
+      @products = Product.order("created_at DESC")
+     end
+
+    @products = Product.search(params[:search], params[:page]) #paginate
   end
 
   # GET /products/1
