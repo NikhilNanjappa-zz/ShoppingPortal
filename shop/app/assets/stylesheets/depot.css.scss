@@ -19,6 +19,7 @@
 /* Styles for products/index */
 
 #product_list table {
+        width: 100%;
         border-collapse: collapse;
 }
 
@@ -30,6 +31,11 @@
 #product_list .list_image {
   width:        60px;
   height:       70px;
+}
+
+#product_list .list_image:hover {
+  width: 100px;
+  height: 100px;
 }
 
 #product_list .list_description {
@@ -68,7 +74,6 @@
 
 #store  .entry {
   overflow: auto;
-  margin-top: 1em;
   border-bottom: 1px dotted #77d;
 }
 
@@ -79,10 +84,18 @@
 
 #store .entry img {
   width: 80px;
-  border: 1px solid black;
   margin-right: 5px;
   margin-bottom: 5px;
   float: left;
+}
+
+#store .entry table {
+  width: 100%;
+}
+
+#store .entry img:hover {
+  width: 100px;
+  height: 100px;
 }
 
 
@@ -108,6 +121,7 @@
 
 #store .entry  .price {
   color: #44a;
+  float: left;
   font-weight: bold;
   margin-right: 2em;
 }

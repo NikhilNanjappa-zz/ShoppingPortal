@@ -1,6 +1,5 @@
 Shop::Application.routes.draw do
   devise_for :users
-  resources :orders
 
   resources :line_items
 
@@ -8,6 +7,13 @@ Shop::Application.routes.draw do
 
   get "store/index"
   resources :products
+
+   resources :orders do
+     member do
+      get 'invoice'
+     end
+   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

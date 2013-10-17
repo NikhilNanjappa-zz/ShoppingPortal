@@ -1,6 +1,11 @@
 <div class="depot_form">
 <fieldset>
 	<legend>Please Enter Your Details</legend>
-	<%= render 'form' %>
+	<% if user_signed_in? %>
+		<%= render partial: "form_if_signed" %>
+	<% else %>
+		<%= render 'form'  %>
+	<% end %>
+
 </fieldset>
 </div>

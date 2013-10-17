@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :invoice]
 
   # GET /orders
   # GET /orders.json
@@ -10,6 +10,12 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+
+  end
+
+  def invoice
+    temp1 = LineItem.where(order_id: @order.id).pluck(:product_id)
+    @products = Product.where(id: temp1)
   end
 
   # GET /orders/new
@@ -42,7 +48,7 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to(store_url, notice: 'Thank you !!') }
+        format.html { redirect_to(invoice_order_path(@order.id)) }
         format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }
