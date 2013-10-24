@@ -1,0 +1,16 @@
+<div class="note">
+  <div class="cart_title">Your cart</div>
+  <table>
+    <%= render(@cart.line_items) %>
+    <tr class="total_line">
+      <td colspan="2">Total</td>
+      <td class="total_cell">Rs. <%= cart.total_price %></td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td><%= button_to 'CheckOut', new_order_path, :method => :get %> </td>
+      <td><%= button_to 'Empty cart', cart, :method => :delete, :confirm => 'Are you sure?' %></td>
+    </tr>
+  </table>
+</div>

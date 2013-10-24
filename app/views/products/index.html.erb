@@ -1,0 +1,30 @@
+<%= form_tag(products_path, :method => "get", id: "search-form") do %>
+  <div>
+    <%= text_field_tag :search, params[:search], placeholder: "Search for a Product" %>
+    <button type="submit">Search</button>
+  </div>
+<% end %>
+
+<div id="product_list">
+  <h1>Listing products</h1>
+    <div id="accordion">
+      <% @products.each do |product| %>
+        <!--%= render partial: "product", locals: {product: product} %-->
+        <h3><%= product.title %></h3>
+        <div>
+          <table>
+            <tr>
+	            <td><%= image_tag(product.image_url, :class => 'list_image') %> </td>
+              <td><%= product.description %></td>
+              <td>
+                <%= link_to 'Show', product %><br/>
+                <%= link_to 'Edit', edit_product_path(product) %><br/>
+                <%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    </div> 
+</div>
+<center><%= will_paginate @products %></center>

@@ -1,0 +1,44 @@
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+<center>
+  <div id="cart">
+    <!--%= render @cart %-->
+    <%= render partial: "/carts/cart", locals: {cart: @cart} %>
+  </div>
+</center><br/><br/>
+
+<!-- Start of search box -->
+<%= form_tag(store_path, :method => "get", id: "search-form") do %>
+  <div>
+    <%= text_field_tag :search, params[:search], placeholder: "Search for a Product" %>
+    <button type="submit">Search</button>
+  </div>
+<% end %>
+<!-- End of search box -->
+
+<!-- Start of Master list -->
+<center><h1>Master List</h1></center>
+
+<center><%= will_paginate @products %></center>
+  <div id="accordion">
+    <% @products.each do |product| %>
+      <h3><%= product.title %></h3>
+      <div class="entry">
+        <table>
+          <tr>
+            <td><%= image_tag(product.image_url) %></td>
+            <td><%= product.description %></td>
+            <td><%= button_to 'Add to Cart', line_items_path(:product_id => product.id) %>
+            </td>
+          </tr>
+          <tr>
+            <td class="price">Rs. <%= product.price %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+<center><%= will_paginate @products %></center>
+
+
